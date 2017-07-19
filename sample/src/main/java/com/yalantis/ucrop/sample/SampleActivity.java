@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
+import com.yalantis.ucrop.util.FileProvider7;
 
 import java.io.File;
 import java.util.Locale;
@@ -195,7 +196,8 @@ public class SampleActivity extends BaseActivity {
                 break;
         }
 
-        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
+//        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
+        UCrop uCrop = UCrop.of(uri, FileProvider7.getUriForFile(SampleActivity.this, new File(getCacheDir(), destinationFileName)));
 
         uCrop = basisConfig(uCrop);
         uCrop = advancedConfig(uCrop);

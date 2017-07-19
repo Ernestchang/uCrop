@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.yalantis.ucrop.util.FileProvider7;
 import com.yalantis.ucrop.view.UCropView;
 
 import java.io.File;
@@ -145,7 +146,8 @@ public class ResultActivity extends BaseActivity {
     private void showNotification(@NonNull File file) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setDataAndType(Uri.fromFile(file), "image/*");
+//        intent.setDataAndType(Uri.fromFile(file), "image/*");
+        intent.setDataAndType(FileProvider7.getUriForFile(ResultActivity.this, file), "image/*");
 
         NotificationCompat.Builder mNotification = new NotificationCompat.Builder(this);
 

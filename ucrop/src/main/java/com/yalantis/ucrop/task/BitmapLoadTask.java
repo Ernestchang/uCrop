@@ -16,8 +16,8 @@ import android.util.Log;
 import com.yalantis.ucrop.callback.BitmapLoadCallback;
 import com.yalantis.ucrop.model.ExifInfo;
 import com.yalantis.ucrop.util.BitmapLoadUtils;
+import com.yalantis.ucrop.util.FileProvider7;
 import com.yalantis.ucrop.util.FileUtils;
-import com.zhy.base.fileprovider.FileProvider7;
 
 import java.io.File;
 import java.io.FileDescriptor;
