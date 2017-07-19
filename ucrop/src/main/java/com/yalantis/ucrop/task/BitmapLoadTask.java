@@ -17,6 +17,7 @@ import com.yalantis.ucrop.callback.BitmapLoadCallback;
 import com.yalantis.ucrop.model.ExifInfo;
 import com.yalantis.ucrop.util.BitmapLoadUtils;
 import com.yalantis.ucrop.util.FileUtils;
+import com.zhy.base.fileprovider.FileProvider7;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -170,7 +171,8 @@ public class BitmapLoadTask extends AsyncTask<Void, Void, BitmapLoadTask.BitmapW
         } else if ("content".equals(inputUriScheme)) {
             String path = FileUtils.getPath(mContext, mInputUri);
             if (!TextUtils.isEmpty(path) && new File(path).exists()) {
-                mInputUri = Uri.fromFile(new File(path));
+//                mInputUri = Uri.fromFile(new File(path));
+                mInputUri = FileProvider7.getUriForFile(mContext, new File(path));
             } else {
                 try {
                     copyFile(mInputUri, mOutputUri);

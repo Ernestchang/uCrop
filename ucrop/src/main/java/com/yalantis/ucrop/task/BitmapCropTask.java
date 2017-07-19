@@ -18,6 +18,7 @@ import com.yalantis.ucrop.model.ImageState;
 import com.yalantis.ucrop.util.BitmapLoadUtils;
 import com.yalantis.ucrop.util.FileUtils;
 import com.yalantis.ucrop.util.ImageHeaderParser;
+import com.zhy.base.fileprovider.FileProvider7;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -168,7 +169,8 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
 
         OutputStream outputStream = null;
         try {
-            outputStream = context.getContentResolver().openOutputStream(Uri.fromFile(new File(mImageOutputPath)));
+//            outputStream = context.getContentResolver().openOutputStream(Uri.fromFile(new File(mImageOutputPath)));
+            outputStream = context.getContentResolver().openOutputStream(FileProvider7.getUriForFile(mContext.get(), new File(mImageOutputPath)));
             croppedBitmap.compress(mCompressFormat, mCompressQuality, outputStream);
             croppedBitmap.recycle();
         } finally {
@@ -198,7 +200,8 @@ public class BitmapCropTask extends AsyncTask<Void, Void, Throwable> {
     protected void onPostExecute(@Nullable Throwable t) {
         if (mCropCallback != null) {
             if (t == null) {
-                Uri uri = Uri.fromFile(new File(mImageOutputPath));
+//                Uri uri = Uri.fromFile(new File(mImageOutputPath));
+                Uri uri = FileProvider7.getUriForFile(mContext.get(), new File(mImageOutputPath));
                 mCropCallback.onBitmapCropped(uri, cropOffsetX, cropOffsetY, mCroppedImageWidth, mCroppedImageHeight);
             } else {
                 mCropCallback.onCropFailure(t);
